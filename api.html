@@ -81,9 +81,8 @@
                 tbody.replaceChildren(); 
                 {
                     const tr = document.createElement('tr');
-                    tr.id = "cleckAll";
                     tr.innerHTML = `
-                    <th><input type="checkbox"></th>
+                    <th><input type="checkbox" id = "cleckAll"></th>
                     <th>管理者</th>
                     <th>性別</th>
                     <th>状態</th>
@@ -210,20 +209,12 @@
             }
             blo403.onclick = pageSwitch;
 
-            // const cleckAll = document.getElementById("cleckAll")            
-            // function clackAll(){
-            //     const cleckBox = document.querySelectorAll('.detil input[type="checkbox"]')
-            //     for(let i = 0;i < cleckBox.length;i++)cleckBox[i].checked = cleckAll.checked;
-            // }
-            // cleckAll.onchange = clackAll;
-            
-const checkAll = document.getElementById("cleckAll");
-function toggleAll() {
-    const checkBoxes = document.querySelectorAll('.detail input[type="checkbox"]');
-    checkBoxes.forEach(cb => cb.checked = checkAll.checked);
-}
-checkAll.onclick = toggleAll;
-
+            const cleckAll = document.getElementById("cleckAll")            
+            function clackAll(){
+                const cleckBox = document.querySelectorAll('.detil input[type="checkbox"]')
+                for(let i = 0;i < cleckBox.length;i++)cleckBox[i].checked = cleckAll.checked;
+            }
+            cleckAll.onchange = clackAll;            
         }
         beeworkMain()
     </script>
