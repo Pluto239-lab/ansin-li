@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.BeeworkMapper">
+
+    <select id="getBeework" resultType="com.example.demo.entity.Beework">
+         SELECT AUTHORITY, COMPANY_ID, PHOTO_ADDRESS, SEX, UPDATE_TIME, USER_CD, USER_MAIL, FIRST_NAME, LAST_NAME, USER_STATUS, USER_TEL
+         FROM user_tbl WHERE
+         	DEL_FLG										=			'0'																		AND 
+	(																																		
+		AUTHORITY										IN			'21'、'31' 																
+		OR(																																	
+			AUTHORITY									=			'11'																	
+			AND																																
+			a0301VueForm.authority						=			'00'																	
+		)																																										
+	)																																		AND 
+	LAST_NAME || FIRST_NAME										LIKE					'%A0301VueForm.userName%'							AND 
+	USER_MAIL													LIKE					'%A0301VueForm.userMail%'							AND 
+	USER_TEL													LIKE					'%A0301VueForm.userTel%'																																									
+         ORDER BY UPDATE_TIME DESC
+    </select>
+
+</mapper>
