@@ -1,0 +1,33 @@
+beework
+ ├── controller
+ │    ├── AdminListController
+ │    └── UserLoginController
+ │
+ ├── service
+ │    ├── AdminListService
+ │    └── AdminSystemRegisterService
+ │
+ ├── mapper
+ │    └── UserTblMapper
+ │
+ ├── entity
+ │    └── UserTblEntity
+ │
+ ├── vueform
+ │    ├── A0002VueForm
+ │    ├── A0301VueForm
+ │    └── A0303VueForm
+ │
+ ├── vo
+ │    ├── A0301Vo
+ │    ├── A0301ListBean
+ │    └── A0303Vo
+ │
+ ├── common
+ │    ├── CommonResult
+ │    └── ResultCode
+ │
+ ├── config
+ │    └── MyBatisConfig（必要なら）
+ │
+ └── BeeworkApplication.java
