@@ -21,8 +21,8 @@
             <div class="blo1"><input type="text" required></div>
             <br />
             <div id="a1">
-                <div class="blo2"><input class="tran0"  type="button" value="クレア"></div>
-                <div class="blo2"><input class="tran0"  type="button" value="検索"></div>
+                <div class="blo2"><input class="tran0" id="clearBtn" type="button" value="クレア"></div>
+                <div class="blo2"><input class="tran0" id="searchBtn" type="button" value="検索"></div>
             </div>
     </div>
     <div class="div">
@@ -52,26 +52,29 @@
         <div class="blo4"><input id="b1" type="text" required value="1"><span id="pageChenge">ページ目へ</span></div>
     </div>
     <script>
-        async function getData() {
+        async function getData(searchParams = {}) {
             const res = await fetch('http://localhost:3000/api/users', {
                 method: 'POST',
                 headers: {
-                'Content-Type': 'application/json'
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                userName: '',
-                userMail: '',
-                userTel: ''
+                    authority: searchParams.authority || '00',
+                    userMail: searchParams.userMail || '',
+                    userName: searchParams.userName || '',
+                    userTel: searchParams.userTel || ''
                 })
             });
             const data = await res.json();
             return data;
         }
+
         async function beeworkMain() {
-            const data = await getData();
+            let data = await getData();
             const blo403 = document.getElementById("blo403");
             const dataSum = document.getElementById("blo401");
             const clear = document.querySelector("#a1 .tran0");
+            const search = document.getElementById("searchBtn");
             let valueParPage = 5;
             let pageNow = 1;
             let pageSum = Math.ceil(data.length/valueParPage); 
@@ -214,7 +217,24 @@
                 const cleckBox = document.querySelectorAll('.detil input[type="checkbox"]')
                 for(let i = 0;i < cleckBox.length;i++)cleckBox[i].checked = cleckAll.checked;
             }
-            cleckAll.onchange = clackAll;            
+            cleckAll.onchange = clackAll;
+            
+            async function doSearch(){
+                const inputs = document.querySelectorAll(".blo1 input");
+                data = await getData({
+                    userName: inputs[0].value || "",
+                    userMail: inputs[1].value || "",
+                    userTel:  inputs[2].value || ""
+                });
+                pageSum = Math.ceil(data.length / valueParPage);
+                pageNow = 1;
+                allData();
+                pageAll();
+                showPage();
+                dataSum.innerText = `総計${data.length}件`;
+            }
+            search.onclick = doSearch;
+
         }
         beeworkMain()
     </script>
