@@ -113,6 +113,11 @@
                     <td><input class="tran"  type="button" value="削除"></td>`;
                     tbody.appendChild(tr);
                 }
+                const cleckAll = document.getElementById("cleckAll")            
+                cleckAll.onchange = function (){
+                    const cleckBox = document.querySelectorAll('.detil input[type="checkbox"]')
+                    for(let i = 0;i < cleckBox.length;i++)cleckBox[i].checked = cleckAll.checked;
+                }
             }
             allData()
 
@@ -212,12 +217,7 @@
             }
             blo403.onclick = pageSwitch;
 
-            const cleckAll = document.getElementById("cleckAll")            
-            function clackAll(){
-                const cleckBox = document.querySelectorAll('.detil input[type="checkbox"]')
-                for(let i = 0;i < cleckBox.length;i++)cleckBox[i].checked = cleckAll.checked;
-            }
-            cleckAll.onchange = clackAll;
+
             
             async function doSearch(){
                 const inputs = document.querySelectorAll(".blo1 input");
